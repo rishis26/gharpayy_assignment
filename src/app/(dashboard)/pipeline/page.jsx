@@ -1,10 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { STAGES } from "@/lib/constants";
+import Card from "@/components/ui/Card";
+import LeadDetailsDrawer from "@/components/crm/LeadDetailsDrawer";
 
 export default function PipelinePage() {
   const [leadsByStage, setLeadsByStage] = useState({});
   const [loading, setLoading] = useState(true);
+  const [selectedLead, setSelectedLead] = useState(null);
 
   useEffect(() => {
     fetchLeads();
@@ -21,6 +24,11 @@ export default function PipelinePage() {
         if (grouped[l.stage]) grouped[l.stage].push(l);
       });
       setLeadsByStage(grouped);
+
+      if (selectedLead) {
+        const updated = data.find((l) => l._id === selectedLead._id);
+        if (updated) setSelectedLead(updated);
+      }
     } catch (e) {
       console.error(e);
     }
@@ -28,7 +36,7 @@ export default function PipelinePage() {
   };
 
   return (
-    <div className="animate-fade">
+    <div>
       <h1 style={{ marginBottom: "32px" }}>Sales Pipeline</h1>
 
       <div
@@ -54,14 +62,11 @@ export default function PipelinePage() {
               <div
                 style={{ display: "flex", alignItems: "center", gap: "8px" }}
               >
-                <div
-                  style={{
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    background: stage.color,
-                  }}
-                ></div>
+                <img
+                  src={`https://img.icons8.com/fluency-systems-filled/20/${stage.color.replace("#", "").toUpperCase()}/${stage.icon}.png`}
+                  alt=""
+                  style={{ width: "18px", height: "18px" }}
+                />
                 <h3
                   style={{
                     fontSize: "14px",
@@ -92,10 +97,10 @@ export default function PipelinePage() {
               style={{ display: "flex", flexDirection: "column", gap: "12px" }}
             >
               {leadsByStage[stage.id]?.map((lead) => (
-                <div
+                <Card
                   key={lead._id}
-                  className="card"
-                  style={{ padding: "16px", cursor: "grab" }}
+                  onClick={() => setSelectedLead(lead)}
+                  style={{ padding: "16px", cursor: "pointer" }}
                 >
                   <div
                     style={{
@@ -148,10 +153,16 @@ export default function PipelinePage() {
                         fontWeight: 700,
                       }}
                     >
-                      {lead.agent?.avatar || "?"}
+                      {lead.agent?.avatar || (
+                        <img
+                          src="https://img.icons8.com/fluency-systems-filled/24/ffffff/user.png"
+                          alt=""
+                          style={{ width: "12px" }}
+                        />
+                      )}
                     </div>
                   </div>
-                </div>
+                </Card>
               ))}
               {leadsByStage[stage.id]?.length === 0 && (
                 <div
@@ -171,6 +182,13 @@ export default function PipelinePage() {
           </div>
         ))}
       </div>
+
+      <LeadDetailsDrawer
+        lead={selectedLead}
+        isOpen={!!selectedLead}
+        onClose={() => setSelectedLead(null)}
+        onUpdate={fetchLeads}
+      />
     </div>
   );
 }

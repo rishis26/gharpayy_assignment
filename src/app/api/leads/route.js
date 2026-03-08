@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { checkSLABreaches } from "@/lib/sla";
 
 // In-memory counter for Round-Robin (resets on server restart, fine for MVP)
 let rrIndex = 0;
@@ -8,6 +9,9 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const stage = searchParams.get("stage");
+
+    // Check for SLA breaches before returning leads
+    checkSLABreaches();
 
     let leads = db.read("leads");
     const agents = db.read("agents");

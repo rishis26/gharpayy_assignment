@@ -1,11 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import { STAGES } from "@/lib/constants";
+import Card from "@/components/ui/Card";
+import Badge from "@/components/ui/Badge";
+import Button from "@/components/ui/Button";
+import LeadDetailsDrawer from "@/components/crm/LeadDetailsDrawer";
 
 export default function LeadsPage() {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
+  const [selectedLead, setSelectedLead] = useState(null);
 
   useEffect(() => {
     fetchLeads();
@@ -19,6 +24,11 @@ export default function LeadsPage() {
       );
       const data = await res.json();
       setLeads(data.data || []);
+
+      if (selectedLead) {
+        const updated = data.data.find((l) => l._id === selectedLead._id);
+        if (updated) setSelectedLead(updated);
+      }
     } catch (e) {
       console.error(e);
     }
@@ -26,7 +36,7 @@ export default function LeadsPage() {
   };
 
   return (
-    <div className="animate-fade">
+    <div>
       <div
         style={{
           display: "flex",
@@ -41,26 +51,34 @@ export default function LeadsPage() {
             Track and manage all your property inquiries.
           </p>
         </div>
-        <select
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          style={{
-            padding: "8px 12px",
-            borderRadius: "8px",
-            border: "1px solid var(--border)",
-            outline: "none",
-          }}
-        >
-          <option value="all">All Stages</option>
-          {STAGES.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.label}
-            </option>
-          ))}
-        </select>
+        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            style={{
+              padding: "8px 12px",
+              borderRadius: "8px",
+              border: "1px solid var(--border)",
+              outline: "none",
+            }}
+          >
+            <option value="all">All Stages</option>
+            {STAGES.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.label}
+              </option>
+            ))}
+          </select>
+          <Button
+            onClick={() => (window.location.href = "/leads/new")}
+            icon="https://img.icons8.com/fluency-systems-filled/20/3B82F6/add--v1.png"
+          >
+            Add Lead
+          </Button>
+        </div>
       </div>
 
-      <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+      <Card style={{ padding: 0, overflow: "hidden" }}>
         <table
           style={{
             width: "100%",
@@ -158,10 +176,18 @@ export default function LeadsPage() {
               leads.map((lead) => (
                 <tr
                   key={lead._id}
+                  onClick={() => setSelectedLead(lead)}
                   style={{
                     borderBottom: "1px solid var(--border)",
                     transition: "background 0.2s",
+                    cursor: "pointer",
                   }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.background = "#f1f5f9")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.background = "transparent")
+                  }
                 >
                   <td style={{ padding: "16px 24px" }}>
                     <div style={{ fontWeight: 600 }}>{lead.name}</div>
@@ -184,9 +210,9 @@ export default function LeadsPage() {
                     </span>
                   </td>
                   <td style={{ padding: "16px 24px" }}>
-                    <span className={`badge badge-${lead.stage}`}>
+                    <Badge type={lead.stage}>
                       {lead.stage.replace("_", " ")}
-                    </span>
+                    </Badge>
                   </td>
                   <td style={{ padding: "16px 24px" }}>
                     <div
@@ -209,7 +235,13 @@ export default function LeadsPage() {
                           fontWeight: 700,
                         }}
                       >
-                        {lead.agent?.avatar || "?"}
+                        {lead.agent?.avatar || (
+                          <img
+                            src="https://img.icons8.com/fluency-systems-filled/24/94a3b8/user.png"
+                            alt=""
+                            style={{ width: "14px" }}
+                          />
+                        )}
                       </div>
                       <span style={{ fontSize: "14px" }}>
                         {lead.agent?.name || "Unassigned"}
@@ -230,7 +262,14 @@ export default function LeadsPage() {
             )}
           </tbody>
         </table>
-      </div>
+      </Card>
+
+      <LeadDetailsDrawer
+        lead={selectedLead}
+        isOpen={!!selectedLead}
+        onClose={() => setSelectedLead(null)}
+        onUpdate={fetchLeads}
+      />
     </div>
   );
 }

@@ -23,20 +23,20 @@ export default function Dashboard() {
     {
       label: "Total Leads",
       value: stats?.totalLeads || 0,
-      color: "#3B82F6",
-      icon: "https://img.icons8.com/fluency-systems-filled/48/3B82F6/graph.png",
+      color: "#2563EB",
+      icon: "https://img.icons8.com/fluency-systems-filled/48/2563EB/chart-line.png",
     },
     {
       label: "Upcoming Visits",
       value: stats?.visitsScheduled || 0,
       color: "#0EA5E9",
-      icon: "https://img.icons8.com/fluency-systems-filled/48/0EA5E9/calendar.png",
+      icon: "https://img.icons8.com/fluency-systems-filled/48/0EA5E9/calendar-2.png",
     },
     {
       label: "Bookings",
       value: stats?.bookingsConfirmed || 0,
       color: "#10B981",
-      icon: "https://img.icons8.com/fluency-systems-filled/48/10B981/ok.png",
+      icon: "https://img.icons8.com/fluency-systems-filled/48/10B981/checked-user-male.png",
     },
     {
       label: "Conversion Rate",
@@ -44,7 +44,7 @@ export default function Dashboard() {
         ? `${Math.round((stats.bookingsConfirmed / stats.totalLeads) * 100) || 0}%`
         : "0%",
       color: "#8B5CF6",
-      icon: "https://img.icons8.com/fluency-systems-filled/48/8B5CF6/target.png",
+      icon: "https://img.icons8.com/fluency-systems-filled/48/8B5CF6/bullseye.png",
     },
   ];
 

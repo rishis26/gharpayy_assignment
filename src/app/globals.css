@@ -1,22 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 :root {
-  /* Skeuomorphic Design Tokens */
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --bg-main: #e0e5ec; /* Classic Neumorphic Background */
-  --bg-card: #e0e5ec;
-  --text-main: #2d3748;
-  --text-muted: #718096;
-  --border: rgba(255, 255, 255, 0.3);
+  /* High-Contrast Skeuomorphic Tokens */
+  --primary: #2563eb;
+  --bg-main: #e6e9f0; /* Slightly cooler grey for better text contrast */
+  --bg-card: #e6e9f0;
+  --text-main: #1a202c;
+  --text-muted: #4a5568;
 
-  /* Neumorphic Shadows */
-  --shadow-raised:
-    9px 9px 16px rgb(163, 177, 198, 0.6),
-    -9px -9px 16px rgba(255, 255, 255, 0.5);
-  --shadow-sunken: inset 6px 6px 12px #b8b9be, inset -6px -6px 12px #ffffff;
-  --shadow-btn: 5px 5px 10px #b8b9be, -5px -5px 10px #ffffff;
-  --shadow-btn-active: inset 2px 2px 5px #b8b9be, inset -2px -2px 5px #ffffff;
+  /* Definitive Borders for crispness */
+  --border-light: rgba(255, 255, 255, 0.9);
+  --border-dark: rgba(0, 0, 0, 0.08);
+
+  /* Neumorphic Shadows with sharper definition */
+  --shadow-raised: 10px 10px 20px #c5c9d1, -10px -10px 20px #ffffff;
+  --shadow-sunken: inset 6px 6px 12px #c5c9d1, inset -6px -6px 12px #ffffff;
+  --shadow-btn: 5px 5px 10px #c5c9d1, -5px -5px 10px #ffffff;
+  --shadow-btn-active: inset 3px 3px 6px #c5c9d1, inset -3px -3px 6px #ffffff;
 
   --radius-lg: 24px;
   --radius-md: 18px;
@@ -67,7 +67,19 @@ h2 {
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow-raised);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border-light); /* Defining border */
+  position: relative;
+}
+
+/* Subtle inner line for crispness */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid var(--border-dark);
+  pointer-events: none;
+  opacity: 0.2;
 }
 
 .badge {

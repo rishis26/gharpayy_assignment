@@ -11,37 +11,37 @@ export default function Sidebar() {
     {
       label: "Dashboard",
       path: "/dashboard",
-      icon: "https://img.icons8.com/fluency-systems-filled/24/718096/home.png",
+      icon: "https://img.icons8.com/fluency-systems-filled/24/4A5568/home.png",
       activeIcon:
-        "https://img.icons8.com/fluency-systems-filled/24/3B82F6/home.png",
+        "https://img.icons8.com/fluency-systems-filled/24/2563EB/home.png",
     },
     {
       label: "Leads",
       path: "/leads",
-      icon: "https://img.icons8.com/fluency-systems-filled/24/718096/conference-call.png",
+      icon: "https://img.icons8.com/fluency-systems-filled/24/4A5568/contacts.png",
       activeIcon:
-        "https://img.icons8.com/fluency-systems-filled/24/3B82F6/conference-call.png",
+        "https://img.icons8.com/fluency-systems-filled/24/2563EB/contacts.png",
     },
     {
       label: "Pipeline",
       path: "/pipeline",
-      icon: "https://img.icons8.com/fluency-systems-filled/24/718096/workflow.png",
+      icon: "https://img.icons8.com/fluency-systems-filled/24/4A5568/sales-performance.png",
       activeIcon:
-        "https://img.icons8.com/fluency-systems-filled/24/3B82F6/workflow.png",
+        "https://img.icons8.com/fluency-systems-filled/24/2563EB/sales-performance.png",
     },
     {
       label: "Agents",
       path: "/agents",
-      icon: "https://img.icons8.com/fluency-systems-filled/24/718096/management.png",
+      icon: "https://img.icons8.com/fluency-systems-filled/24/4A5568/manager.png",
       activeIcon:
-        "https://img.icons8.com/fluency-systems-filled/24/3B82F6/management.png",
+        "https://img.icons8.com/fluency-systems-filled/24/2563EB/manager.png",
     },
     {
       label: "AI Assistant",
       path: "#",
-      icon: "https://img.icons8.com/fluency-systems-filled/24/718096/chatbot.png",
+      icon: "https://img.icons8.com/fluency-systems-filled/24/4A5568/chatbot.png",
       activeIcon:
-        "https://img.icons8.com/fluency-systems-filled/24/3B82F6/chatbot.png",
+        "https://img.icons8.com/fluency-systems-filled/24/2563EB/chatbot.png",
       onClick: (e) => {
         e.preventDefault();
         document.getElementById("ai-chat-btn")?.click();
@@ -94,15 +94,21 @@ export default function Sidebar() {
                 padding: "12px 16px",
                 borderRadius: "8px",
                 textDecoration: "none",
-                color: isActive ? "#3b82f6" : "#718096",
-                background: isActive ? "#e0e5ec" : "transparent",
+                color: isActive ? "#2563EB" : "#4A5568",
+                background: isActive ? "#E6E9F0" : "transparent",
                 boxShadow: isActive
-                  ? "inset 6px 6px 12px #b8b9be, inset -6px -6px 12px #ffffff"
+                  ? "inset 4px 4px 8px #c5c9d1, inset -4px -4px 8px #ffffff"
                   : "none",
-                fontWeight: isActive ? 800 : 500,
+                fontWeight: isActive ? 800 : 600,
                 fontSize: "14px",
                 marginBottom: "12px",
                 transition: "all 0.3s ease",
+                border: isActive
+                  ? "1px solid rgba(0,0,0,0.05)"
+                  : "1px solid transparent",
+                textShadow: isActive
+                  ? "0.5px 0.5px 0px rgba(255,255,255,0.5)"
+                  : "none",
               }}
               onClick={item.onClick}
             >
@@ -182,9 +188,9 @@ export default function Sidebar() {
           }}
         >
           <img
-            src="https://img.icons8.com/fluency-systems-filled/24/EF4444/exit.png"
+            src="https://img.icons8.com/fluency-systems-filled/24/EF4444/logout-rounded-left.png"
             alt=""
-            style={{ width: "18px", height: "18px" }}
+            style={{ width: "20px", height: "20px" }}
           />
           Sign Out
         </button>

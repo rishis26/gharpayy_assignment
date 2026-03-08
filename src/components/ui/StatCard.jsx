@@ -5,16 +5,26 @@ export default function StatCard({ label, value, color, icon }) {
     <Card style={{ display: "flex", alignItems: "center", gap: "20px" }}>
       <div
         style={{
-          width: "48px",
-          height: "48px",
-          borderRadius: "12px",
-          background: `${color}15`,
+          width: "56px",
+          height: "56px",
+          borderRadius: "16px",
+          background: "var(--bg-main)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          boxShadow: "var(--shadow-sunken)",
+          border: "1px solid rgba(0,0,0,0.05)",
         }}
       >
-        <img src={icon} alt="" style={{ width: "24px", height: "24px" }} />
+        <img
+          src={icon}
+          alt=""
+          style={{
+            width: "28px",
+            height: "28px",
+            filter: "drop-shadow(1px 1px 1px rgba(255,255,255,0.8))",
+          }}
+        />
       </div>
       <div>
         <div

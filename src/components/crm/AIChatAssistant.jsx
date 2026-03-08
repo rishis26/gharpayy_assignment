@@ -175,7 +175,7 @@ export default function AIChatAssistant() {
                 style={{ width: "40px", height: "40px", padding: 0 }}
               >
                 <img
-                  src="https://img.icons8.com/fluency-systems-filled/24/FFFFFF/sent.png"
+                  src="https://img.icons8.com/fluency-systems-filled/24/3B82F6/sent.png"
                   alt=""
                   style={{ width: "18px" }}
                 />

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { STAGES } from "@/lib/constants";
 import Card from "@/components/ui/Card";
 import LeadDetailsDrawer from "@/components/crm/LeadDetailsDrawer";
@@ -8,6 +8,7 @@ export default function PipelinePage() {
   const [leadsByStage, setLeadsByStage] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectedLead, setSelectedLead] = useState(null);
+  const scrollContainerRef = useRef(null);
 
   useEffect(() => {
     fetchLeads();
@@ -36,44 +37,114 @@ export default function PipelinePage() {
   };
 
   return (
-    <div>
-      <h1 style={{ marginBottom: "32px" }}>Sales Pipeline</h1>
+    <div
+      style={{
+        height: "calc(100vh - 120px)",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "24px",
+        }}
+      >
+        <h1 style={{ margin: 0 }}>Sales Pipeline</h1>
+        <div
+          style={{
+            fontSize: "12px",
+            color: "var(--text-muted)",
+            fontWeight: 600,
+            background: "var(--bg-main)",
+            padding: "6px 12px",
+            borderRadius: "10px",
+            boxShadow: "var(--shadow-btn)",
+          }}
+        >
+          {Object.values(leadsByStage).flat().length} Total Leads
+        </div>
+      </div>
 
       <div
+        ref={scrollContainerRef}
+        className="pipeline-container"
         style={{
           display: "flex",
           gap: "20px",
           overflowX: "auto",
-          paddingBottom: "20px",
-          minHeight: "calc(100vh - 200px)",
+          paddingBottom: "24px",
+          flex: 1,
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none", // Firefox
+          msOverflowStyle: "none", // IE
         }}
       >
+        <style jsx>{`
+          .pipeline-container::-webkit-scrollbar {
+            display: none;
+          }
+          .pipeline-column {
+            min-width: 320px;
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 24px;
+            padding: 12px;
+            height: 100%;
+          }
+          @media (max-width: 768px) {
+            .pipeline-column {
+              min-width: 280px;
+              width: 280px;
+            }
+          }
+        `}</style>
+
         {STAGES.map((stage) => (
-          <div key={stage.id} style={{ minWidth: "300px", flex: 1 }}>
+          <div key={stage.id} className="pipeline-column">
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 marginBottom: "16px",
-                padding: "0 4px",
+                padding: "8px 12px",
               }}
             >
               <div
-                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
-                <img
-                  src={`https://img.icons8.com/fluency-systems-filled/20/${stage.color.replace("#", "").toUpperCase()}/${stage.icon}.png`}
-                  alt=""
-                  style={{ width: "18px", height: "18px" }}
-                />
+                <div
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                    borderRadius: "10px",
+                    background: "white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "var(--shadow-btn)",
+                    border: `1px solid ${stage.color}40`,
+                  }}
+                >
+                  <img
+                    src={`https://img.icons8.com/fluency-systems-filled/20/${stage.color.replace("#", "").toUpperCase()}/${stage.icon}.png`}
+                    alt=""
+                    style={{ width: "18px", height: "18px" }}
+                  />
+                </div>
                 <h3
                   style={{
-                    fontSize: "14px",
-                    fontWeight: 700,
+                    fontSize: "13px",
+                    fontWeight: 800,
                     textTransform: "uppercase",
                     letterSpacing: "0.05em",
-                    color: "var(--text-muted)",
+                    color: "var(--text-main)",
+                    margin: 0,
                   }}
                 >
                   {stage.label}
@@ -81,12 +152,12 @@ export default function PipelinePage() {
               </div>
               <span
                 style={{
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  color: "var(--text-muted)",
-                  background: "#e2e8f0",
-                  padding: "2px 8px",
-                  borderRadius: "10px",
+                  fontSize: "11px",
+                  fontWeight: 800,
+                  color: stage.color,
+                  background: `${stage.color}15`,
+                  padding: "4px 10px",
+                  borderRadius: "8px",
                 }}
               >
                 {leadsByStage[stage.id]?.length || 0}
@@ -94,19 +165,39 @@ export default function PipelinePage() {
             </div>
 
             <div
-              style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "12px",
+                overflowY: "auto",
+                flex: 1,
+                padding: "4px",
+              }}
             >
               {leadsByStage[stage.id]?.map((lead) => (
                 <Card
                   key={lead._id}
                   onClick={() => setSelectedLead(lead)}
-                  style={{ padding: "16px", cursor: "pointer" }}
+                  style={{
+                    padding: "16px",
+                    cursor: "pointer",
+                    transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                    border: "1px solid var(--border-light)",
+                    background: "white",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.transform = "translateY(-2px)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.transform = "translateY(0)")
+                  }
                 >
                   <div
                     style={{
-                      fontWeight: 600,
+                      fontWeight: 800,
                       fontSize: "14px",
                       marginBottom: "4px",
+                      color: "var(--text-main)",
                     }}
                   >
                     {lead.name}
@@ -116,6 +207,7 @@ export default function PipelinePage() {
                       fontSize: "12px",
                       color: "var(--text-muted)",
                       marginBottom: "12px",
+                      fontWeight: 600,
                     }}
                   >
                     {lead.phone}
@@ -130,52 +222,60 @@ export default function PipelinePage() {
                   >
                     <span
                       style={{
-                        fontSize: "11px",
-                        padding: "2px 6px",
-                        background: "#f1f5f9",
-                        borderRadius: "4px",
+                        fontSize: "10px",
+                        fontWeight: 700,
+                        padding: "3px 8px",
+                        background: "var(--bg-main)",
+                        borderRadius: "6px",
                         color: "var(--text-muted)",
+                        border: "1px solid var(--border-light)",
                       }}
                     >
                       {lead.source}
                     </span>
                     <div
                       style={{
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                        background: "#3b82f6",
-                        color: "white",
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "9px",
-                        fontWeight: 700,
+                        gap: "6px",
                       }}
                     >
-                      {lead.agent?.avatar || (
+                      <div
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          borderRadius: "8px",
+                          background: "white",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          boxShadow: "var(--shadow-btn)",
+                          border: "1px solid var(--border-light)",
+                        }}
+                      >
                         <img
-                          src="https://img.icons8.com/fluency-systems-filled/24/ffffff/user.png"
+                          src="https://img.icons8.com/fluency-systems-filled/24/bc4749/user.png"
                           alt=""
-                          style={{ width: "12px" }}
+                          style={{ width: "14px" }}
                         />
-                      )}
+                      </div>
                     </div>
                   </div>
                 </Card>
               ))}
-              {leadsByStage[stage.id]?.length === 0 && (
+              {leadsByStage[stage.id]?.length === 0 && !loading && (
                 <div
                   style={{
-                    padding: "20px",
-                    border: "2px dashed var(--border)",
-                    borderRadius: "var(--radius-md)",
+                    padding: "32px 20px",
+                    border: "2px dashed var(--border-light)",
+                    borderRadius: "20px",
                     textAlign: "center",
                     color: "var(--text-muted)",
                     fontSize: "13px",
+                    fontWeight: 600,
                   }}
                 >
-                  No leads
+                  No leads in this stage
                 </div>
               )}
             </div>

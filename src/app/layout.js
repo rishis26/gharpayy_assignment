@@ -5,7 +5,7 @@ export const metadata = {
   title: "Gharpayy CRM | Administrative Portal",
   description: "Secure lead and operations management for Gharpayy.",
   icons: {
-    icon: "https://gharpayy.com/img/logo/gharpayy_logo2.png",
+    icon: "/logo.png",
   },
 };
 
@@ -13,10 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link
-          rel="icon"
-          href="https://gharpayy.com/img/logo/gharpayy_logo2.png"
-        />
+        <link rel="icon" href="/logo.png" />
       </head>
       <body>
         <SessionProvider>{children}</SessionProvider>

@@ -83,7 +83,14 @@ export default function LeadDetailsDrawer({ lead, isOpen, onClose, onUpdate }) {
             marginBottom: "32px",
           }}
         >
-          <h2 style={{ fontSize: "20px", fontWeight: 800 }}>Lead Details</h2>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <img
+              src="/logo.png"
+              alt=""
+              style={{ height: "18px", width: "auto" }}
+            />
+            <h2 style={{ fontSize: "20px", fontWeight: 800 }}>Lead Details</h2>
+          </div>
           <Button variant="ghost" onClick={onClose}>
             <img
               src="https://img.icons8.com/fluency-systems-filled/24/0f172a/multiply.png"

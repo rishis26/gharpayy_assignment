@@ -13,13 +13,17 @@ export const authOptions = {
       async authorize(credentials) {
         if (!credentials?.email) return null;
 
+        const emailOrUser = credentials.email.toLowerCase();
         const agents = db.read("agents");
+
+        // Allow 'admin' alias or exact email match
         const agent = agents.find(
-          (a) => a.email.toLowerCase() === credentials.email.toLowerCase(),
+          (a) =>
+            a.email.toLowerCase() === emailOrUser ||
+            (emailOrUser === "admin" && a.role.toLowerCase() === "admin"),
         );
 
         // For MVP, we accept 'gharpayy123' or any password to simplify testing
-        // In production, we would use bcrypt.compare here
         if (agent) {
           return {
             id: agent._id,

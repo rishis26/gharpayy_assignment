@@ -52,6 +52,7 @@ export default function Sidebar({ isOpen, setIsOpen, isMobile }) {
 
   return (
     <aside
+      className="smooth-transition"
       style={{
         width: "var(--sidebar-w)",
         height: "100vh",
@@ -123,7 +124,7 @@ export default function Sidebar({ isOpen, setIsOpen, isMobile }) {
             }}
           >
             <img
-              src="https://gharpayy.com/img/logo/gharpayy_logo2.png"
+              src="/logo.png"
               alt="Logo"
               style={{ height: "24px", width: "auto" }}
             />

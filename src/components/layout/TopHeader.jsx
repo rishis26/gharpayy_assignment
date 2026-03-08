@@ -62,29 +62,36 @@ export default function TopHeader({ onMenuClick }) {
           }
         `}</style>
 
-        <div>
-          <h1
-            style={{
-              fontSize: "18px",
-              fontWeight: 800,
-              color: "var(--text-main)",
-              margin: 0,
-              letterSpacing: "-0.5px",
-            }}
-          >
-            {getPageTitle()}
-          </h1>
-          <p
-            className="mobile-hide"
-            style={{
-              fontSize: "11px",
-              color: "var(--text-muted)",
-              margin: "2px 0 0 0",
-              fontWeight: 600,
-            }}
-          >
-            Gharpayy Internal Operations Portal
-          </p>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src="/logo.png"
+            alt=""
+            style={{ height: "20px", width: "auto" }}
+          />
+          <div>
+            <h1
+              style={{
+                fontSize: "18px",
+                fontWeight: 800,
+                color: "var(--text-main)",
+                margin: 0,
+                letterSpacing: "-0.5px",
+              }}
+            >
+              {getPageTitle()}
+            </h1>
+            <p
+              className="mobile-hide"
+              style={{
+                fontSize: "11px",
+                color: "var(--text-muted)",
+                margin: "2px 0 0 0",
+                fontWeight: 600,
+              }}
+            >
+              Gharpayy Internal Operations Portal
+            </p>
+          </div>
         </div>
       </div>
 

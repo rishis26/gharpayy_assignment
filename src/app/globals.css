@@ -1,26 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 :root {
-  /* High-Contrast Skeuomorphic Tokens */
-  --primary: #2563eb;
-  --bg-main: #e6e9f0; /* Slightly cooler grey for better text contrast */
-  --bg-card: #e6e9f0;
-  --text-main: #1a202c;
-  --text-muted: #4a5568;
+  /* Option 4: Cyber Clay Theme Tokens */
+  --primary: #bc4749; /* Deep Terracotta */
+  --bg-main: #f5ebe0; /* Warm Clay Base */
+  --bg-card: #f5ebe0;
+  --text-main: #3d405b; /* Slate Earth */
+  --text-muted: #6b705c; /* Olive Muted */
 
-  /* Definitive Borders for crispness */
+  /* Definitive Clay Borders */
   --border-light: rgba(255, 255, 255, 0.9);
-  --border-dark: rgba(0, 0, 0, 0.08);
+  --border-dark: rgba(188, 71, 73, 0.1);
 
-  /* Neumorphic Shadows with sharper definition */
-  --shadow-raised: 10px 10px 20px #c5c9d1, -10px -10px 20px #ffffff;
-  --shadow-sunken: inset 6px 6px 12px #c5c9d1, inset -6px -6px 12px #ffffff;
-  --shadow-btn: 5px 5px 10px #c5c9d1, -5px -5px 10px #ffffff;
-  --shadow-btn-active: inset 3px 3px 6px #c5c9d1, inset -3px -3px 6px #ffffff;
+  /* Warm Neumorphic Shadows */
+  --shadow-raised: 10px 10px 20px #e3d5c5, -10px -10px 20px #ffffff;
+  --shadow-sunken: inset 6px 6px 12px #e3d5c5, inset -6px -6px 12px #ffffff;
+  --shadow-btn: 5px 5px 10px #e3d5c5, -5px -5px 10px #ffffff;
+  --shadow-btn-active: inset 3px 3px 6px #e3d5c5, inset -3px -3px 6px #ffffff;
 
-  --radius-lg: 24px;
-  --radius-md: 18px;
-  --radius-sm: 12px;
+  --radius-lg: 28px;
+  --radius-md: 20px;
+  --radius-sm: 14px;
+  --sidebar-w: 280px;
 }
 
 * {
@@ -45,7 +46,19 @@ body {
 .main-content {
   flex: 1;
   padding: 40px;
-  max-width: calc(100vw - var(--sidebar-w));
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-hide {
+    display: none !important;
+  }
 }
 
 /* Typography */

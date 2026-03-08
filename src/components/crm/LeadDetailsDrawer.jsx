@@ -435,18 +435,17 @@ export default function LeadDetailsDrawer({ lead, isOpen, onClose, onUpdate }) {
                             {isNote ? (
                               <div
                                 style={{
-                                  background: "#e0e5ec",
+                                  background: "var(--bg-main)",
                                   padding: "16px",
                                   borderRadius: "16px",
-                                  boxShadow:
-                                    "inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff",
+                                  boxShadow: "var(--shadow-sunken)",
                                   fontSize: "13px",
                                 }}
                               >
                                 <span
                                   style={{
                                     fontWeight: 700,
-                                    color: "#3B82F6",
+                                    color: "var(--primary)",
                                     display: "block",
                                     marginBottom: "4px",
                                   }}

@@ -23,28 +23,28 @@ export default function Dashboard() {
     {
       label: "Total Leads",
       value: stats?.totalLeads || 0,
-      color: "#2563EB",
-      icon: "https://img.icons8.com/fluency-systems-filled/48/2563EB/chart-line.png",
+      color: "#bc4749",
+      icon: "https://img.icons8.com/material-rounded/48/bc4749/line-chart.png",
     },
     {
       label: "Upcoming Visits",
       value: stats?.visitsScheduled || 0,
-      color: "#0EA5E9",
-      icon: "https://img.icons8.com/fluency-systems-filled/48/0EA5E9/calendar-2.png",
+      color: "#6b705c",
+      icon: "https://img.icons8.com/material-rounded/48/6b705c/calendar.png",
     },
     {
       label: "Bookings",
       value: stats?.bookingsConfirmed || 0,
-      color: "#10B981",
-      icon: "https://img.icons8.com/fluency-systems-filled/48/10B981/checked-user-male.png",
+      color: "#bc4749",
+      icon: "https://img.icons8.com/material-rounded/48/bc4749/checked-user-male.png",
     },
     {
       label: "Conversion Rate",
       value: stats
         ? `${Math.round((stats.bookingsConfirmed / stats.totalLeads) * 100) || 0}%`
         : "0%",
-      color: "#8B5CF6",
-      icon: "https://img.icons8.com/fluency-systems-filled/48/8B5CF6/bullseye.png",
+      color: "#6b705c",
+      icon: "https://img.icons8.com/material-rounded/48/6b705c/target.png",
     },
   ];
 
@@ -71,6 +71,7 @@ export default function Dashboard() {
       </div>
 
       <div
+        className="dashboard-grid"
         style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "24px" }}
       >
         <Card>
@@ -97,9 +98,11 @@ export default function Dashboard() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  padding: "12px",
-                  borderRadius: "8px",
-                  background: "#f8fafc",
+                  padding: "16px",
+                  borderRadius: "var(--radius-sm)",
+                  background: "var(--bg-main)",
+                  boxShadow: "var(--shadow-sunken)",
+                  border: "1px solid var(--border-light)",
                 }}
               >
                 <div
@@ -107,26 +110,37 @@ export default function Dashboard() {
                 >
                   <div
                     style={{
-                      width: "32px",
-                      height: "32px",
-                      borderRadius: "50%",
-                      background: "#3b82f6",
-                      color: "white",
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "12px",
+                      background: "var(--bg-main)",
+                      color: "var(--primary)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontWeight: 700,
-                      fontSize: "12px",
+                      fontWeight: 800,
+                      fontSize: "14px",
+                      boxShadow: "var(--shadow-raised)",
                     }}
                   >
                     {lead.name[0]}
                   </div>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: "14px" }}>
+                    <div
+                      style={{
+                        fontWeight: 700,
+                        fontSize: "14px",
+                        color: "var(--text-main)",
+                      }}
+                    >
                       {lead.name}
                     </div>
                     <div
-                      style={{ fontSize: "12px", color: "var(--text-muted)" }}
+                      style={{
+                        fontSize: "11px",
+                        color: "var(--text-muted)",
+                        fontWeight: 600,
+                      }}
                     >
                       {lead.source}
                     </div>
@@ -141,7 +155,7 @@ export default function Dashboard() {
         <Card>
           <h2 style={{ marginBottom: "24px" }}>Pipeline Health</h2>
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
           >
             {STAGES.slice(0, 4).map((s) => {
               const count = stats?.stageDistribution[s.id] || 0;
@@ -153,20 +167,28 @@ export default function Dashboard() {
                       display: "flex",
                       justifyContent: "space-between",
                       fontSize: "13px",
-                      marginBottom: "8px",
+                      marginBottom: "10px",
                     }}
                   >
-                    <span style={{ color: "var(--text-muted)" }}>
+                    <span
+                      style={{ color: "var(--text-muted)", fontWeight: 600 }}
+                    >
                       {s.label}
                     </span>
-                    <span style={{ fontWeight: 600 }}>{count}</span>
+                    <span
+                      style={{ fontWeight: 800, color: "var(--text-main)" }}
+                    >
+                      {count}
+                    </span>
                   </div>
                   <div
                     style={{
-                      height: "6px",
-                      background: "#f1f5f9",
-                      borderRadius: "3px",
+                      height: "10px",
+                      background: "var(--bg-main)",
+                      borderRadius: "5px",
                       overflow: "hidden",
+                      boxShadow: "var(--shadow-sunken)",
+                      border: "1px solid var(--border-light)",
                     }}
                   >
                     <div
@@ -174,6 +196,8 @@ export default function Dashboard() {
                         width: `${percentage}%`,
                         height: "100%",
                         background: s.color,
+                        borderRadius: "5px",
+                        boxShadow: "0 0 10px " + s.color + "44",
                       }}
                     ></div>
                   </div>
@@ -182,6 +206,14 @@ export default function Dashboard() {
             })}
           </div>
         </Card>
+
+        <style jsx>{`
+          @media (max-width: 1100px) {
+            .dashboard-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </div>
     </div>
   );

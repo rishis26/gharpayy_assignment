@@ -14,7 +14,15 @@ export default function AIChatAssistant() {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -52,40 +60,56 @@ export default function AIChatAssistant() {
 
   return (
     <div
-      style={{ position: "fixed", bottom: "30px", right: "30px", zIndex: 1000 }}
+      style={{
+        position: "fixed",
+        bottom: isMobile && isOpen ? "0" : "30px",
+        right: isMobile && isOpen ? "0" : "30px",
+        zIndex: 1000,
+        width: isMobile && isOpen ? "100%" : "auto",
+      }}
     >
       {isOpen ? (
         <Card
           style={{
-            width: "350px",
-            height: "500px",
+            width: isMobile ? "100%" : "350px",
+            height: isMobile ? "80vh" : "500px",
             display: "flex",
             flexDirection: "column",
             padding: 0,
-            boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-            border: "1px solid var(--border)",
+            boxShadow: "0 10px 50px rgba(0,0,0,0.2)",
+            border: "1px solid var(--border-light)",
+            borderRadius: isMobile ? "30px 30px 0 0" : "var(--radius-lg)",
+            background: "var(--bg-main)",
           }}
         >
           <div
             style={{
-              padding: "16px",
-              borderBottom: "1px solid var(--border)",
+              padding: "20px",
+              borderBottom: "1px solid var(--border-dark)",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              background: "#e0e5ec",
-              borderRadius: "24px 24px 0 0",
-              boxShadow: "0 4px 10px rgba(163,177,198,0.2)",
+              background: "var(--bg-main)",
+              borderRadius: isMobile
+                ? "30px 30px 0 0"
+                : "calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0",
+              boxShadow: "0 4px 10px rgba(188, 71, 73, 0.05)",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <img
-                src="https://img.icons8.com/fluency-systems-filled/24/3B82F6/chatbot.png"
+                src="https://img.icons8.com/fluency-systems-filled/24/bc4749/chatbot.png"
                 alt=""
                 style={{ width: "22px" }}
               />
-              <span style={{ fontWeight: 700, fontSize: "14px" }}>
-                Gharpayy AI Assistant
+              <span
+                style={{
+                  fontWeight: 800,
+                  fontSize: "14px",
+                  color: "var(--text-main)",
+                }}
+              >
+                AI Assistant
               </span>
             </div>
             <button
@@ -94,8 +118,9 @@ export default function AIChatAssistant() {
                 background: "none",
                 border: "none",
                 cursor: "pointer",
-                fontSize: "20px",
+                fontSize: "24px",
                 color: "var(--text-muted)",
+                fontWeight: 300,
               }}
             >
               ×
@@ -107,10 +132,10 @@ export default function AIChatAssistant() {
             style={{
               flex: 1,
               overflowY: "auto",
-              padding: "16px",
+              padding: "20px",
               display: "flex",
               flexDirection: "column",
-              gap: "12px",
+              gap: "14px",
             }}
           >
             {messages.map((m, i) => (
@@ -118,13 +143,16 @@ export default function AIChatAssistant() {
                 key={i}
                 style={{
                   alignSelf: m.role === "user" ? "flex-end" : "flex-start",
-                  background: m.role === "user" ? "#3B82F6" : "#f1f5f9",
+                  background: m.role === "user" ? "var(--primary)" : "white",
                   color: m.role === "user" ? "white" : "var(--text-main)",
-                  padding: "10px 14px",
-                  borderRadius: "12px",
+                  padding: "12px 16px",
+                  borderRadius: "18px",
                   fontSize: "13px",
-                  maxWidth: "80%",
+                  maxWidth: "85%",
                   lineHeight: "1.5",
+                  boxShadow:
+                    m.role === "assistant" ? "var(--shadow-btn)" : "none",
+                  fontWeight: 600,
                 }}
               >
                 {m.content}
@@ -134,52 +162,64 @@ export default function AIChatAssistant() {
               <div
                 style={{
                   alignSelf: "flex-start",
-                  background: "#f1f5f9",
-                  padding: "10px 12px",
-                  borderRadius: "10px",
-                  fontSize: "12px",
                   color: "var(--text-muted)",
+                  fontSize: "12px",
                   fontStyle: "italic",
+                  paddingLeft: "10px",
                 }}
               >
-                AI is thinking...
+                AI is typing...
               </div>
             )}
           </div>
 
           <div
-            style={{ padding: "16px", borderTop: "1px solid var(--border)" }}
+            style={{
+              padding: "20px",
+              borderTop: "1px solid var(--border-dark)",
+            }}
           >
-            <div style={{ display: "flex", gap: "8px" }}>
+            <div style={{ display: "flex", gap: "10px" }}>
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSend()}
-                placeholder="Ask anything about CRM..."
+                placeholder="Ask Gharpayy AI..."
                 style={{
                   flex: 1,
-                  padding: "10px 12px",
-                  borderRadius: "14px",
+                  padding: "12px 16px",
+                  borderRadius: "16px",
                   border: "none",
-                  boxShadow:
-                    "inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff",
-                  background: "#e0e5ec",
+                  boxShadow: "var(--shadow-sunken)",
+                  background: "var(--bg-main)",
                   outline: "none",
                   fontSize: "13px",
-                  color: "#2d3748",
+                  color: "var(--text-main)",
+                  fontWeight: 600,
                 }}
               />
-              <Button
+              <button
                 onClick={handleSend}
-                style={{ width: "40px", height: "40px", padding: 0 }}
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "14px",
+                  background: "var(--bg-main)",
+                  boxShadow: "var(--shadow-btn)",
+                  border: "1px solid var(--border-light)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                }}
               >
                 <img
-                  src="https://img.icons8.com/fluency-systems-filled/24/3B82F6/sent.png"
+                  src="https://img.icons8.com/fluency-systems-filled/24/bc4749/sent.png"
                   alt=""
-                  style={{ width: "18px" }}
+                  style={{ width: "20px" }}
                 />
-              </Button>
+              </button>
             </div>
           </div>
         </Card>
@@ -188,32 +228,23 @@ export default function AIChatAssistant() {
           id="ai-chat-btn"
           onClick={() => setIsOpen(true)}
           style={{
-            width: "65px",
-            height: "65px",
-            borderRadius: "20px",
-            background: "#e0e5ec",
-            color: "#3B82F6",
-            border: "none",
+            width: "60px",
+            height: "60px",
+            borderRadius: "18px",
+            background: "var(--bg-main)",
+            border: "1px solid var(--border-light)",
             cursor: "pointer",
-            boxShadow: "8px 8px 16px #b8b9be, -8px -8px 16px #ffffff",
+            boxShadow: "var(--shadow-raised)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             transition: "all 0.3s ease",
           }}
-          onMouseDown={(e) =>
-            (e.currentTarget.style.boxShadow =
-              "inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #ffffff")
-          }
-          onMouseUp={(e) =>
-            (e.currentTarget.style.boxShadow =
-              "8px 8px 16px #b8b9be, -8px -8px 16px #ffffff")
-          }
         >
           <img
-            src="https://img.icons8.com/fluency-systems-filled/32/3B82F6/chatbot.png"
+            src="https://img.icons8.com/fluency-systems-filled/32/bc4749/chatbot.png"
             alt=""
-            style={{ width: "32px" }}
+            style={{ width: "28px" }}
           />
         </button>
       )}

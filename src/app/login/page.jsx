@@ -12,12 +12,12 @@ export default function Login() {
         alignItems: "center",
         justifyContent: "center",
         background:
-          "radial-gradient(circle at top right, #1e293b, #0f172a, #020617)",
+          "radial-gradient(circle at top right, #f5ebe0, #e3d5c5, #d5c7b8)",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Decorative blurry backgrounds */}
+      {/* Decorative blurry backgrounds - using terracotta and olive for the warm theme */}
       <div
         style={{
           position: "absolute",
@@ -25,7 +25,7 @@ export default function Login() {
           right: "-5%",
           width: "40%",
           height: "40%",
-          background: "rgba(37, 99, 235, 0.15)",
+          background: "rgba(188, 71, 73, 0.1)",
           filter: "blur(120px)",
           borderRadius: "50%",
         }}
@@ -37,7 +37,7 @@ export default function Login() {
           left: "-5%",
           width: "40%",
           height: "40%",
-          background: "rgba(139, 92, 246, 0.1)",
+          background: "rgba(107, 112, 92, 0.08)",
           filter: "blur(120px)",
           borderRadius: "50%",
         }}
@@ -48,26 +48,27 @@ export default function Login() {
           width: "440px",
           textAlign: "center",
           padding: "54px 40px",
-          background: "rgba(255, 255, 255, 1)",
-          border: "none",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-          borderRadius: "32px",
+          background: "#f5ebe0",
+          border: "1px solid rgba(255, 255, 255, 0.8)",
+          boxShadow: "15px 15px 30px #d5c7b8, -15px -15px 30px #ffffff",
+          borderRadius: "40px",
           zIndex: 10,
         }}
       >
         <div
           style={{
-            marginBottom: "24px",
+            marginBottom: "32px",
             display: "inline-flex",
-            padding: "16px",
-            borderRadius: "20px",
-            background: "#f1f5f9",
+            padding: "20px",
+            borderRadius: "24px",
+            background: "#f5ebe0",
+            boxShadow: "10px 10px 20px #d5c7b8, -10px -10px 20px #ffffff",
           }}
         >
           <img
-            src="https://img.icons8.com/fluency-systems-filled/48/2563EB/shield.png"
-            alt=""
-            style={{ width: "32px" }}
+            src="https://gharpayy.com/img/logo/gharpayy_logo2.png"
+            alt="Gharpayy Logo"
+            style={{ width: "80px", height: "auto" }}
           />
         </div>
 
@@ -75,32 +76,32 @@ export default function Login() {
           style={{
             fontFamily: "Plus Jakarta Sans",
             fontWeight: 800,
-            fontSize: "36px",
+            fontSize: "28px",
             marginBottom: "12px",
-            color: "#0f172a",
-            letterSpacing: "-1px",
+            color: "#3d405b",
+            letterSpacing: "-1.5px",
           }}
         >
-          gharpayy <span style={{ color: "#2563eb" }}>CRM</span>
+          CRM Portal
         </h1>
         <p
           style={{
-            color: "#64748b",
+            color: "#6b705c",
             marginBottom: "44px",
             fontSize: "15px",
-            fontWeight: 500,
+            fontWeight: 600,
           }}
         >
-          Welcome to the Administrative Portal
+          Administrative Portal
         </p>
 
         <div style={{ textAlign: "left", marginBottom: "32px" }}>
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+            style={{ display: "flex", flexDirection: "column", gap: "20px" }}
           >
             <div style={{ position: "relative" }}>
               <img
-                src="https://img.icons8.com/fluency-systems-filled/24/94A3B8/name.png"
+                src="https://img.icons8.com/fluency-systems-filled/24/6b705c/name.png"
                 alt=""
                 style={{
                   position: "absolute",
@@ -115,19 +116,21 @@ export default function Login() {
                 style={{
                   width: "100%",
                   padding: "14px 14px 14px 44px",
-                  borderRadius: "14px",
-                  border: "1.5px solid #f1f5f9",
-                  background: "#f8fafc",
+                  borderRadius: "16px",
+                  border: "none",
+                  background: "#f5ebe0",
+                  boxShadow:
+                    "inset 4px 4px 8px #d5c7b8, inset -4px -4px 8px #ffffff",
                   fontSize: "14px",
-                  fontWeight: 600,
-                  color: "#1e293b",
+                  fontWeight: 700,
+                  color: "#3d405b",
                   cursor: "not-allowed",
                 }}
               />
             </div>
             <div style={{ position: "relative" }}>
               <img
-                src="https://img.icons8.com/fluency-systems-filled/24/94A3B8/lock.png"
+                src="https://img.icons8.com/fluency-systems-filled/24/6b705c/lock.png"
                 alt=""
                 style={{
                   position: "absolute",
@@ -143,12 +146,14 @@ export default function Login() {
                 style={{
                   width: "100%",
                   padding: "14px 14px 14px 44px",
-                  borderRadius: "14px",
-                  border: "1.5px solid #f1f5f9",
-                  background: "#f8fafc",
+                  borderRadius: "16px",
+                  border: "none",
+                  background: "#f5ebe0",
+                  boxShadow:
+                    "inset 4px 4px 8px #d5c7b8, inset -4px -4px 8px #ffffff",
                   fontSize: "14px",
-                  fontWeight: 600,
-                  color: "#1e293b",
+                  fontWeight: 700,
+                  color: "#3d405b",
                   cursor: "not-allowed",
                 }}
               />
@@ -166,29 +171,29 @@ export default function Login() {
           }
           style={{
             width: "100%",
-            height: "54px",
-            borderRadius: "16px",
+            height: "56px",
+            borderRadius: "18px",
             fontSize: "16px",
             fontWeight: 800,
-            background: "#2563eb",
-            color: "white",
-            boxShadow: "0 10px 15px -3px rgba(37, 99, 235, 0.3)",
+            background: "#f5ebe0",
+            color: "#bc4749",
+            boxShadow: "6px 6px 12px #d5c7b8, -6px -6px 12px #ffffff",
+            border: "1px solid rgba(188, 71, 73, 0.1)",
           }}
         >
-          Login Securely
+          Access Portal
         </Button>
 
         <div
           style={{
             marginTop: "32px",
             fontSize: "12px",
-            color: "#94a3b8",
-            fontWeight: 500,
+            color: "#6b705c",
+            fontWeight: 600,
             lineHeight: 1.6,
           }}
         >
-          Protecting Gharpayy's operational data with <br /> enterprise-grade
-          security.
+          Secure Gharpayy operational gateway. <br /> Tactile identity enabled.
         </div>
       </Card>
     </div>

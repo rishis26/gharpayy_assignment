@@ -5,7 +5,7 @@
     "source": "WhatsApp",
     "stage": "new",
     "agentId": "a2",
-    "lastActivity": "2026-03-08T16:51:43.059Z",
+    "lastActivity": "2026-03-08T17:12:10.438Z",
     "createdAt": "2026-03-08T16:05:36.813Z",
     "timeline": [
       {
@@ -57,6 +57,21 @@
         "text": "SLA Breach (5m): Automatically reassigned from Sneha Rao to Priya Nair",
         "type": "sla_reassignment",
         "createdAt": "2026-03-08T16:51:43.059Z"
+      },
+      {
+        "text": "SLA Breach (6m): Automatically reassigned from Priya Nair to Gharpayy Admin",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T16:58:22.694Z"
+      },
+      {
+        "text": "SLA Breach (7m): Automatically reassigned from Gharpayy Admin to Arjun Mehta",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T17:06:06.639Z"
+      },
+      {
+        "text": "SLA Breach (6m): Automatically reassigned from Arjun Mehta to Priya Nair",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T17:12:10.438Z"
       }
     ],
     "updatedAt": "2026-03-08T16:40:58.885Z"
@@ -66,8 +81,8 @@
     "phone": "9123456789",
     "source": "Website Form",
     "stage": "new",
-    "agentId": "a1",
-    "lastActivity": "2026-03-08T16:53:16.523Z",
+    "agentId": "admin",
+    "lastActivity": "2026-03-08T17:12:10.438Z",
     "createdAt": "2026-03-08T15:57:36.813Z",
     "timeline": [
       {
@@ -114,6 +129,21 @@
         "text": "SLA Breach (5m): Automatically reassigned from Arjun Mehta to Rahul Sharma",
         "type": "sla_reassignment",
         "createdAt": "2026-03-08T16:53:16.523Z"
+      },
+      {
+        "text": "SLA Breach (5m): Automatically reassigned from Rahul Sharma to Gharpayy Admin",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T16:58:22.694Z"
+      },
+      {
+        "text": "SLA Breach (7m): Automatically reassigned from Gharpayy Admin to Rahul Sharma",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T17:06:06.639Z"
+      },
+      {
+        "text": "SLA Breach (6m): Automatically reassigned from Rahul Sharma to Gharpayy Admin",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T17:12:10.438Z"
       }
     ]
   },
@@ -122,8 +152,8 @@
     "phone": "9888877777",
     "source": "Phone Call",
     "stage": "contacted",
-    "agentId": "admin",
-    "lastActivity": "2026-03-08T16:53:16.523Z",
+    "agentId": "a4",
+    "lastActivity": "2026-03-08T17:12:10.438Z",
     "createdAt": "2026-03-08T15:07:36.813Z",
     "timeline": [
       {
@@ -170,6 +200,21 @@
         "text": "SLA Breach (5m): Automatically reassigned from Priya Nair to Gharpayy Admin",
         "type": "sla_reassignment",
         "createdAt": "2026-03-08T16:53:16.523Z"
+      },
+      {
+        "text": "SLA Breach (5m): Automatically reassigned from Gharpayy Admin to Rahul Sharma",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T16:58:22.694Z"
+      },
+      {
+        "text": "SLA Breach (7m): Automatically reassigned from Rahul Sharma to Arjun Mehta",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T17:06:06.639Z"
+      },
+      {
+        "text": "SLA Breach (6m): Automatically reassigned from Arjun Mehta to Sneha Rao",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T17:12:10.438Z"
       }
     ]
   },
@@ -201,7 +246,7 @@
     "notes": "",
     "stage": "new",
     "agentId": "a3",
-    "lastActivity": "2026-03-08T16:53:16.523Z",
+    "lastActivity": "2026-03-08T17:12:10.438Z",
     "timeline": [
       {
         "text": "Lead captured via Social Media",
@@ -222,6 +267,21 @@
         "text": "SLA Breach (5m): Automatically reassigned from Sneha Rao to Arjun Mehta",
         "type": "sla_reassignment",
         "createdAt": "2026-03-08T16:53:16.523Z"
+      },
+      {
+        "text": "SLA Breach (5m): Automatically reassigned from Arjun Mehta to Gharpayy Admin",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T16:58:22.694Z"
+      },
+      {
+        "text": "SLA Breach (7m): Automatically reassigned from Gharpayy Admin to Rahul Sharma",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T17:06:06.639Z"
+      },
+      {
+        "text": "SLA Breach (6m): Automatically reassigned from Rahul Sharma to Arjun Mehta",
+        "type": "sla_reassignment",
+        "createdAt": "2026-03-08T17:12:10.438Z"
       }
     ],
     "_id": "s22tazr7n",

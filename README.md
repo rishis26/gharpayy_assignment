@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gharpayy CRM
 
-## Getting Started
+A full-stack CRM solution built with a "Cyber Clay" aesthetic. This repository contains both a responsive **Next.js Web Application** and a native **React Native Mobile App** to manage your leads, track your pipeline, and interact with your team.
 
-First, run the development server:
+![Gharpayy Logo](public/logo.png)
+
+## 📌 Features
+
+### Web Application (Next.js)
+
+- **Interactive Dashboard**: Features interactive conversion charts, real-time KPI overview, and quick-action lead metrics.
+- **Lead Management**: Filter, view, and interact with a mock database of prospective buyers. Complete with pagination, visual tags for lead sources, and stage indicators.
+- **Kanban Sales Pipeline**: A visually engaging, drag-and-drop-style (visualized) board. Move leads logically from "New" ➡️ "Contacted" ➡️ "Site Visit" ➡️ "Won".
+- **Agent Directory**: Displays performance tracking and profiles of active CRM agents.
+- **Fully Responsive**: Optimizations ensure the dashboard looks perfectly tailored to 4k monitors and mobile browsers alike.
+
+### Mobile Application (React Native)
+
+- **Built for Android & iOS**: Full cross-platform support with native feel.
+- **Secure Authentication**: Uses JWT style tokenization configured smoothly over AsyncStorage.
+- **Bottom Tab Navigation**: Clean, custom navigation jumping effortlessly between the Dashboard, Leads, and Pipeline.
+- **Stage Modals**: Tap on any lead in the pipeline to trigger a specialized native modal presenting deeper contact information without leaving the view.
+- **Smooth Layout Adjustments**: Configured using `react-native-safe-area-context` to safely adapt to device notches, punch-holes, and dynamic swipe bars.
+
+## 🛠 Tech Stack
+
+- **Web**: React 18, Next.js 14, Tailwind CSS, Lucide Icons, Recharts (for Dashboard data visualization).
+- **Mobile**: React Native, React Navigation (Native Stack + Bottom Tabs), Axios, AsyncStorage.
+- **Data/Backend**: Custom configured Next.js API Routes acting as a lightweight backend connecting to a localized JSON data store (`src/data/leads.json`).
+
+---
+
+## 🚀 Getting Started
+
+To get a local instance of both systems running:
+
+### 1. The Web Application (Next.js)
+
+First, install dependencies at the root of the project:
+
+```bash
+npm install
+# or yarn install / pnpm install
+```
+
+Start the web development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Login Credentials**:
+  - The login portal is pre-configured. Use `admin` as the username and **any** password to bypass the portal and enter the application!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. The Mobile Application (React Native)
 
-## Learn More
+Navigate to the internal React Native directory:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cd CRM_app/gharpayy_CRM
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Install mobile dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+```
 
-## Deploy on Vercel
+Start the Metro Bundler:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run the application on an emulator or plugged-in device:
+
+```bash
+npm run android
+# or
+npm run ios
+```
+
+_Note: The mobile app defaults to drawing its data from the localized mock JSON system (`src/data/leads.json`) within the native shell to ensure maximum performance and offline functionality._
+
+---
+
+## 📦 APK Installation
+
+You do not have to build the application from scratch to test it! A pre-built `.apk` release has been placed in the public directory of this project.
+
+1. Navigate to `public/gharpayy-crm.apk`
+2. Download the file directly to your Android device.
+3. Tap to install (you may need to allow "Unknown Sources" from your browser/file manager settings).
+
+## 🗃️ Database Structure
+
+Data is localized in the `/data` and `/src/data` directories mimicking a NoSQL structure. The Next.js API layer parses these files to emulate live CRUD actions without requiring difficult MongoDB integrations for testing.
+
+---
+
+> **Design Note**: The user interface relies heavily on the "Cyber Clay" concept—characterized by soft `#f5ebe0` cream backgrounds, elevated soft-shadowed white cards (`#fff`), and strong `#bc4749` terracotta red accents. Avoid introducing pure `#000000` or `#ffffff` outer layouts without considering depth.

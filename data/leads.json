@@ -1,0 +1,71 @@
+[
+  {
+    "name": "Aarav Singh",
+    "phone": "9876543210",
+    "source": "WhatsApp",
+    "stage": "new",
+    "agentId": "a1",
+    "lastActivity": "2026-03-08T16:05:36.813Z",
+    "createdAt": "2026-03-08T16:05:36.813Z",
+    "timeline": [
+      {
+        "text": "Lead captured via WhatsApp",
+        "type": "system",
+        "createdAt": "2026-03-08T16:07:36.813Z"
+      }
+    ]
+  },
+  {
+    "name": "Meera Iyer",
+    "phone": "9123456789",
+    "source": "Website Form",
+    "stage": "new",
+    "agentId": "a2",
+    "lastActivity": "2026-03-08T15:57:36.813Z",
+    "createdAt": "2026-03-08T15:57:36.813Z",
+    "timeline": [
+      {
+        "text": "Lead captured via Website Form",
+        "type": "system",
+        "createdAt": "2026-03-08T16:07:36.813Z"
+      }
+    ]
+  },
+  {
+    "name": "Rohan Gupta",
+    "phone": "9888877777",
+    "source": "Phone Call",
+    "stage": "contacted",
+    "agentId": "a1",
+    "lastActivity": "2026-03-08T16:07:36.813Z",
+    "createdAt": "2026-03-08T15:07:36.813Z",
+    "timeline": [
+      {
+        "text": "Lead captured via Phone Call",
+        "type": "system",
+        "createdAt": "2026-03-08T16:07:36.813Z"
+      }
+    ]
+  },
+  {
+    "name": "Divya Krishnan",
+    "phone": "9555544444",
+    "source": "Social Media",
+    "stage": "visit_scheduled",
+    "agentId": "a3",
+    "visitDetails": {
+      "property": "PG Koramangala - Premium",
+      "date": "2026-03-10",
+      "time": "11:00"
+    },
+    "lastActivity": "2026-03-08T16:07:36.813Z",
+    "createdAt": "2026-03-07T16:07:36.813Z",
+    "timeline": [
+      {
+        "text": "Visit scheduled for PG Koramangala",
+        "type": "visit",
+        "createdAt": "2026-03-08T16:07:36.813Z"
+      }
+    ]
+  }
+]

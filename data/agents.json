@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "a1",
+    "name": "Rahul Sharma",
+    "email": "rahul@gharpayy.com",
+    "avatar": "RS",
+    "active": true,
+    "role": "agent"
+  },
+  {
+    "_id": "a2",
+    "name": "Priya Nair",
+    "email": "priya@gharpayy.com",
+    "avatar": "PN",
+    "active": true,
+    "role": "agent"
+  },
+  {
+    "_id": "a3",
+    "name": "Arjun Mehta",
+    "email": "arjun@gharpayy.com",
+    "avatar": "AM",
+    "active": true,
+    "role": "agent"
+  },
+  {
+    "_id": "a4",
+    "name": "Sneha Rao",
+    "email": "sneha@gharpayy.com",
+    "avatar": "SR",
+    "active": true,
+    "role": "agent"
+  },
+  {
+    "_id": "admin",
+    "name": "Gharpayy Admin",
+    "email": "admin@gharpayy.com",
+    "avatar": "GA",
+    "active": true,
+    "role": "admin"
+  }
+]

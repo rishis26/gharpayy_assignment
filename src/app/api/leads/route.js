@@ -1,12 +1,21 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { checkSLABreaches } from "@/lib/sla";
+import { getAuthUser } from "@/lib/auth";
 
 // In-memory counter for Round-Robin (resets on server restart, fine for MVP)
 let rrIndex = 0;
 
 export async function GET(req) {
   try {
+    const user = await getAuthUser(req);
+    if (!user) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     const { searchParams } = new URL(req.url);
     const stage = searchParams.get("stage");
 

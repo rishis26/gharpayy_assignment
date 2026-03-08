@@ -1,9 +1,19 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { getAuthUser } from "@/lib/auth";
 
 export async function PATCH(req, { params }) {
   try {
-    const { id } = params;
+    const user = await getAuthUser(req);
+    if (!user) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
+    // params is an object, await it in Next.js 15+ if it's a promise, but here it seems standard
+    const id = (await params).id;
     const body = await req.json();
     const { stage, agentId, note, visitOutcome, visitDetails } = body;
 
@@ -67,7 +77,15 @@ export async function PATCH(req, { params }) {
 
 export async function DELETE(req, { params }) {
   try {
-    const { id } = params;
+    const user = await getAuthUser(req);
+    if (!user) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
+    const { id } = await params;
     db.delete("leads", id);
     return NextResponse.json({ success: true, message: "Lead deleted" });
   } catch (error) {

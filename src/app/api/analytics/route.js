@@ -1,9 +1,18 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { STAGES } from "@/lib/constants";
+import { getAuthUser } from "@/lib/auth";
 
-export async function GET() {
+export async function GET(req) {
   try {
+    const user = await getAuthUser(req);
+    if (!user) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     const leads = db.read("leads");
 
     const stats = {

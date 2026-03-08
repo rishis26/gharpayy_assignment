@@ -1,23 +1,34 @@
-import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
-import { db } from "./db";
+import { jwtVerify } from "jose";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export const authOptions = {
-  providers: [CredentialsProvider({
-    name: "credentials",
-    credentials: { email: {}, password: {} },
-    async authorize(creds) {
-      const agents = db.read('agents');
-      const agent = agents.find(a => a.email.toLowerCase() === creds.email.toLowerCase());
-      if (!agent || !(await bcrypt.compare(creds.password, agent.password))) return null;
-      return { id: agent._id, name: agent.name, email: agent.email, role: agent.role, avatar: agent.avatar };
-    },
-  })],
-  callbacks: {
-    async jwt({ token, user }) { if (user) { token.id = user.id; token.role = user.role; token.avatar = user.avatar; } return token; },
-    async session({ session, token }) { if (token) { session.user.id = token.id; session.user.role = token.role; session.user.avatar = token.avatar; } return session; },
-  },
-  pages: { signIn: "/login" },
-  session: { strategy: "jwt" },
-  secret: "gharpayy-crm-secret-2024",
-};
+const SECRET = new TextEncoder().encode(
+  process.env.NEXTAUTH_SECRET || "gharpayy-secret-123",
+);
+
+export async function getAuthUser(req) {
+  // 1. Try NextAuth Session (for Web)
+  try {
+    const session = await getServerSession(authOptions);
+    if (session?.user) {
+      return session.user;
+    }
+  } catch (e) {
+    // Ignore session errors and try token
+  }
+
+  // 2. Try JWT from Authorization Header (for Mobile)
+  const authHeader = req.headers.get("authorization");
+  if (authHeader && authHeader.startsWith("Bearer ")) {
+    const token = authHeader.substring(7);
+    try {
+      const { payload } = await jwtVerify(token, SECRET);
+      return payload;
+    } catch (err) {
+      console.error("JWT verification failed:", err.message);
+      return null;
+    }
+  }
+
+  return null;
+}
